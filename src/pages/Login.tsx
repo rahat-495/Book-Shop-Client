@@ -1,12 +1,51 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 import logPic from "../assets/loginPic.webp";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { toast } from "sonner";
+import { useAppDispatch } from "@/redux/hooks";
+import { useLoginMutation } from "@/redux/features/auth/authApi";
+import { verifyToken } from "@/utils/verifyToken";
+import { setUser, TUser } from "@/redux/features/auth/authSlice";
+// import { useAppDispatch } from "../../redux/hooks";
+// import { useLoginMutation } from "../../redux/features/auth/authApi";
+// import { verifyToken } from "../../utils/verifyToken";
+// import { setUser, TUser } from "../../redux/features/auth/authSlice";
+
+interface LoginFormInputs {
+  email: string;
+  password: string;
+}
 
 export function Login({ className, ...props }: React.ComponentProps<"div">) {
+  const { register, handleSubmit } = useForm<LoginFormInputs>();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const [login] = useLoginMutation();
+
+  const onSubmit: SubmitHandler<LoginFormInputs> = async (data) => {
+    const toastId = toast.loading("Logging in");
+    try {
+      const userInfo = {
+        email: data.email,
+        password: data.password,
+      };
+      const res = await login(userInfo).unwrap();
+      const user = verifyToken(res.data.accessToken) as TUser;
+
+      dispatch(setUser({ user, token: res.data.accessToken }));
+      toast.success("Login success", { id: toastId, duration: 2000 });
+      navigate(`/`);
+    } catch (err) {
+      toast.error("Something went wrong", { id: toastId, duration: 2000 });
+    }
+  };
+
   return (
     <div
       className={cn(
@@ -17,7 +56,10 @@ export function Login({ className, ...props }: React.ComponentProps<"div">) {
     >
       <Card className="w-full max-w-4xl overflow-hidden shadow-lg">
         <CardContent className="grid grid-cols-1 md:grid-cols-2">
-          <form className="p-6 sm:p-8 flex items-center">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="p-6 sm:p-8 flex items-center"
+          >
             <div className="flex flex-col gap-6 w-full">
               <div className="text-center">
                 <h1 className="text-2xl font-bold">
@@ -33,6 +75,7 @@ export function Login({ className, ...props }: React.ComponentProps<"div">) {
                   type="email"
                   placeholder="m@example.com"
                   required
+                  {...register("email")}
                 />
               </div>
 
@@ -46,7 +89,12 @@ export function Login({ className, ...props }: React.ComponentProps<"div">) {
                     Forgot your password?
                   </a>
                 </div>
-                <Input id="password" type="password" required />
+                <Input
+                  id="password"
+                  type="password"
+                  required
+                  {...register("password")}
+                />
               </div>
 
               <Button type="submit" className="w-full">

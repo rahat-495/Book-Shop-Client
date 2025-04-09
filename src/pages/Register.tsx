@@ -1,12 +1,47 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 import logPic from "../assets/loginPic.webp";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { toast } from "sonner";
+import { useAppDispatch } from "@/redux/hooks";
+import { useRegisterMutation } from "@/redux/features/auth/authApi";
+import { setUser } from "@/redux/features/auth/authSlice";
+
+interface RegisterFormValues {
+  name: string;
+  email: string;
+  password: string;
+}
 
 export function Register({ className, ...props }: React.ComponentProps<"div">) {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const [registerMutation] = useRegisterMutation();
+  const { register, handleSubmit } = useForm<RegisterFormValues>();
+
+  const onSubmit: SubmitHandler<RegisterFormValues> = async (data) => {
+    const toastId = toast.loading("Signing up...");
+    try {
+      const userInfo = {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+      };
+      const res = await registerMutation(userInfo).unwrap();
+      dispatch(setUser({ user: res.data.user, token: res.data.accessToken }));
+      localStorage.setItem("accessToken", res.data.accessToken);
+      toast.success("Registered Successfully", { id: toastId, duration: 2000 });
+      navigate("/login");
+    } catch (err) {
+      toast.error("Something went wrong", { id: toastId, duration: 2000 });
+    }
+  };
+
   return (
     <div
       className={cn(
@@ -17,7 +52,10 @@ export function Register({ className, ...props }: React.ComponentProps<"div">) {
     >
       <Card className="w-full max-w-4xl overflow-hidden shadow-lg">
         <CardContent className="grid grid-cols-1 md:grid-cols-2">
-          <form className="p-6 sm:p-8 flex items-center">
+          <form
+            className="p-6 sm:p-8 flex items-center"
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <div className="flex flex-col gap-6 w-full">
               <div className="text-center">
                 <h1 className="text-2xl font-bold">Welcome In Books Home</h1>
@@ -28,7 +66,13 @@ export function Register({ className, ...props }: React.ComponentProps<"div">) {
 
               <div className="grid gap-2">
                 <Label htmlFor="name">Username</Label>
-                <Input id="name" type="text" placeholder="your mail" required />
+                <Input
+                  id="name"
+                  type="text"
+                  placeholder="Your username"
+                  required
+                  {...register("name")}
+                />
               </div>
 
               <div className="grid gap-2">
@@ -38,6 +82,7 @@ export function Register({ className, ...props }: React.ComponentProps<"div">) {
                   type="email"
                   placeholder="m@example.com"
                   required
+                  {...register("email")}
                 />
               </div>
 
@@ -45,11 +90,16 @@ export function Register({ className, ...props }: React.ComponentProps<"div">) {
                 <div className="flex items-center justify-between">
                   <Label htmlFor="password">Password</Label>
                 </div>
-                <Input id="password" type="password" required />
+                <Input
+                  id="password"
+                  type="password"
+                  required
+                  {...register("password")}
+                />
               </div>
 
               <Button type="submit" className="w-full">
-                Login
+                Sign Up
               </Button>
 
               <div className="text-center text-sm">
