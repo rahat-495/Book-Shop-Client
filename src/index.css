@@ -113,6 +113,25 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+/* ==========================testimonial css=============================== */
+.testimonial-slide-bg {
+  background-image: url("/src/assets/tbi-1.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.testimonial-slide-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 0;
+}
+
+/* ==========================testimonial css=============================== */
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
