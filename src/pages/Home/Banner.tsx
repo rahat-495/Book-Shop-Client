@@ -1,8 +1,6 @@
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
 const Banner = () => {
@@ -27,6 +25,21 @@ const Banner = () => {
 
                 <SwiperSlide className="w-full h-[700px] rounded relative">
 
+                    <img src="https://www.shutterstock.com/image-photo/old-books-quill-pen-vintage-600nw-1947616498.jpg" alt="" className="w-full h-[700px] rounded"/>
+
+                    <div className="absolute flex flex-col gap-2 gro items-center justify-center top-0 left-0 w-full h-full text-white rounded backdrop-blur-sm">
+                        <h1 className="text-5xl font-bold">Unlock the Power of Reading</h1>
+                        <p className="w-[500px] text-center text-2xl">
+                            Each book is a door to a new world.  
+                            Discover ideas that spark change, stories that inspire,  
+                            and knowledge that empowers your journey forward.
+                        </p>
+                    </div>
+
+                </SwiperSlide>
+
+                <SwiperSlide className="w-full h-[700px] rounded relative">
+
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjfDsoFBWuOIeC6UtAYjLZUFBGEsJGLaB1sw&s" alt="" className="w-full h-[700px] rounded"/>
 
                     <div className="absolute flex flex-col gap-2 gro items-center justify-center top-0 left-0 w-full h-full text-white rounded backdrop-blur-sm">
@@ -37,12 +50,6 @@ const Banner = () => {
                             Your next breakthrough might be just one page away.
                         </p>
                     </div>
-
-                </SwiperSlide>
-
-                <SwiperSlide className="w-full h-[700px] rounded relative">
-
-                    <img src="https://static.vecteezy.com/system/resources/thumbnails/002/294/880/small/reading-book-web-banner-design-student-reading-book-on-stack-of-book-to-get-inspiration-online-education-digital-classroom-e-learning-concept-header-or-footer-banner-free-vector.jpg" alt="" className="w-full h-[700px] rounded"/>
 
                 </SwiperSlide>
 

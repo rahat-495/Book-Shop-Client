@@ -1,9 +1,8 @@
 
 import BookComp from "@/components/BookComponents/BookComp";
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import BookFilteringComp from "@/components/BookComponents/BookFilteringComp";
 
-const Products = () => {
+const Books = () => {
 
     const data = [
         {
@@ -75,22 +74,20 @@ const Products = () => {
     ]
 
     return (
-        <div className="flex flex-col items-center justify-center gap-5 mt-20 mb-32 w-[1440px] mx-auto">
+        <div className="min-h-screen">
+            <div className="flex flex-col items-center justify-center gap-5 mt-20 mb-32 w-[1440px] mx-auto">
 
-            <h1 className="gro text-4xl font-semibold">Products</h1>
+                <BookFilteringComp />
 
-            <div className="grid grid-cols-3 gap-5 w-full">
-                {
-                    data?.map((item) => <BookComp key={item?._id} item={item}/>)
-                }
+                <div className="grid grid-cols-3 gap-5 w-full">
+                    {
+                        data?.map((item) => <BookComp key={item?._id} item={item}/>)
+                    }
+                </div>
+
             </div>
-
-            <Link to={'/books'}>
-                <Button className="cursor-pointer duration-300 text-xl font-semibold border bg-white text-black border-black hover:text-white hover:border-black">View All</Button>
-            </Link>
-            
         </div>
     );
 };
 
-export default Products;
+export default Books;
