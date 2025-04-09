@@ -1,10 +1,14 @@
 
-import MainLayout from "./components/Layouts/MainLayout";
+import Main from "./components/layout/Main";
+import Footer from "./shared/Footer/Footer";
+import Nav from "./shared/Navbar/Nav";
 
 function App() {
   return (
     <>
-      <MainLayout />
+      <Nav />
+      <Main />
+      <Footer />
     </>
   );
 }

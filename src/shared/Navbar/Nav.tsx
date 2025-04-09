@@ -1,5 +1,5 @@
 
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Nav = () => {
 
@@ -11,13 +11,13 @@ const Nav = () => {
     ]
 
     return (
-        <div className="flex justify-between items-center bg-transparent backdrop-blur-2xl gro sticky top-0 py-2 text-black">
+        <div className="flex w-[1440px] mx-auto justify-between items-center bg-transparent backdrop-blur-2xl gro sticky top-0 py-2 text-black">
             
             <div className="flex items-center justify-between gap-3">
                 <h1 className="text-xl font-semibold">Book Shop</h1>
             </div>  
 
-            <div className="flex gap-3">
+            <div className="flex items-center gap-3">
                 {
                     navLists.map((navList, index) => (
                         <NavLink 
@@ -28,7 +28,9 @@ const Nav = () => {
                         </NavLink>
                     ))
                 }
-            </div>        
+                <Link to="/login" className="bg-primary text-white px-4 py-1 rounded-md transition duration-300">Login</Link>
+                <Link to="/register" className="bg-primary text-white px-4 py-1 rounded-md transition duration-300">Register</Link>
+            </div> 
             
         </div>
     );
