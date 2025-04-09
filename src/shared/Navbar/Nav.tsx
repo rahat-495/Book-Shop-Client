@@ -11,7 +11,7 @@ const Nav = () => {
     ]
 
     return (
-        <div className="flex w-[1440px] mx-auto justify-between items-center bg-transparent backdrop-blur-2xl gro sticky top-0 py-2 text-black">
+        <div className="flex z-40 w-[1440px] px-2 mx-auto justify-between items-center bg-transparent backdrop-blur-xl gro sticky top-0 py-2 text-black">
             
             <div className="flex items-center justify-between gap-3">
                 <h1 className="text-xl font-semibold">Book Shop</h1>
