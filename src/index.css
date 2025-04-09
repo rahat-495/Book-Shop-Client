@@ -112,7 +112,7 @@
 
 /* ==========================testimonial css=============================== */
 .testimonial-slide-bg {
-  background-image: url("/src/assets/tbi-1.jpg"); /* Adjust path if needed */
+  background-image: url("/src/assets/tbi-1.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -123,7 +123,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+  background: rgba(0, 0, 0, 0.6);
   z-index: 0;
 }
 
