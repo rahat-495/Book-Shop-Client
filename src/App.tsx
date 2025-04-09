@@ -1,10 +1,10 @@
-import { Button } from "./components/ui/button";
+
+import MainLayout from "./components/Layouts/MainLayout";
 
 function App() {
   return (
     <>
-      <h1>Hello starting</h1>
-      <Button>Click me</Button>
+      <MainLayout />
     </>
   );
 }
