@@ -12,10 +12,6 @@ import { useAppDispatch } from "@/redux/hooks";
 import { useLoginMutation } from "@/redux/features/auth/authApi";
 import { verifyToken } from "@/utils/verifyToken";
 import { setUser, TUser } from "@/redux/features/auth/authSlice";
-// import { useAppDispatch } from "../../redux/hooks";
-// import { useLoginMutation } from "../../redux/features/auth/authApi";
-// import { verifyToken } from "../../utils/verifyToken";
-// import { setUser, TUser } from "../../redux/features/auth/authSlice";
 
 interface LoginFormInputs {
   email: string;

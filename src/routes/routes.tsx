@@ -1,4 +1,5 @@
 import App from "@/App";
+import About from "@/pages/About/About";
 import Home from "@/pages/Home/Home";
 import { Login } from "@/pages/Login";
 import { Register } from "@/pages/Register";
@@ -12,6 +13,10 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/about",
+        element: <About />,
       },
     ],
   },
