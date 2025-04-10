@@ -1,15 +1,23 @@
-
+import { Button } from "@/components/ui/button";
+import { logout } from "@/redux/features/auth/authSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { Link, NavLink } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 
 const Nav = () => {
+  const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.auth.user);
+  const navLists = [
+    { name: "Home", path: "/" },
+    { name: "Books", path: "/books" },
+    { name: "About", path: "/about" },
+    { name: "Contact", path: "/contact" },
+  ];
 
-    const navLists = [
-        { name: "Home", path: "/" },
-        { name: "Books", path: "/books" },
-        { name: "About", path: "/about" },
-        { name: "Contact", path: "/contact" },
-    ]
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
 
     return (
         <div className="flex z-40 w-full xl:w-[1440px] px-2 mx-auto justify-between items-center bg-transparent backdrop-blur-xl gro sticky top-0 py-3 text-black">
@@ -59,6 +67,7 @@ const Nav = () => {
             
         </div>
     );
+
 };
 
 export default Nav;
