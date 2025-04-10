@@ -13,7 +13,7 @@ const BookFilteringComp = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="w-full grid grid-cols-6 gap-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="w-full grid-cols-1 gap-3 grid xl:grid-cols-6 xl:gap-4">
 
             <Input
                 {...register("title")}
@@ -59,7 +59,7 @@ const BookFilteringComp = () => {
                 {...register("minPrice")}
                 type="number"
                 placeholder="Min Price"
-                className="w-[100px]"
+                className="xl:w-[100px]"
                 name="minPrice"
                 min={0}
                 />
@@ -70,7 +70,7 @@ const BookFilteringComp = () => {
                 {...register("maxPrice")}
                 type="number"
                 placeholder="Max Price"
-                className="w-[100px]"
+                className="xl:w-[100px]"
                 name="maxPrice"
                 min={0}
                 />
