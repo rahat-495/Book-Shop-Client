@@ -26,7 +26,7 @@ const ManageUsers = () => {
     console.log(data?.data);
 
     return (
-        <div className="p-6 w-10/12 mx-auto mt-10">
+        <div className="w-full px-3 md:w-2/3 md:ml-auto xl:p-6 xl:w-10/12 xl:mx-auto mt-10">
 
           <h2 className="text-4xl gro font-semibold mb-10 text-center">Manage Users</h2>
 
