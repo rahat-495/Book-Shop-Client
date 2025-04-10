@@ -1,5 +1,5 @@
 
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { logout } from "@/redux/features/auth/authSlice";
@@ -9,6 +9,7 @@ import { useGetMyDataQuery } from "@/redux/features/user/userApi";
 
 const Nav = () => {
 
+    const location = useLocation() ;
     const dispatch = useAppDispatch();
     const user = useAppSelector((state) => state.auth.user);
     const {data} = useGetMyDataQuery(undefined) ;
@@ -18,6 +19,7 @@ const Nav = () => {
         { name: "Books", path: "/books" },
         { name: "About", path: "/about" },
         { name: "Contact", path: "/contact" },
+        { name: "Dashboard", path: "/dashboard" },
     ]
 
     const handleLogout = () => {
@@ -25,7 +27,7 @@ const Nav = () => {
     };
 
     return (
-        <div className="flex z-40 w-full xl:w-[1440px] px-2 mx-auto justify-between items-center bg-transparent backdrop-blur-xl gro sticky top-0 py-3 text-black">
+        <div className={`flex z-40 w-full ${location.pathname?.includes('/dashboard') ? 'w-full px-3 xl:px-16' : 'xl:w-[1440px] px-2'} mx-auto justify-between items-center bg-transparent backdrop-blur-xl gro sticky top-0 py-3 text-black`}>
             
             <div className="flex items-center justify-between gap-3">
                 <h1 className="text-xl font-semibold">Book Shop</h1>
