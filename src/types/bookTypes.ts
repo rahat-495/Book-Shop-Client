@@ -8,15 +8,18 @@ export type TBookCategory =
   | "Biography";
 
 export type TBook = {
-    _id?: string | number; 
-    title: string;
-    availability: boolean;
-    author: string;
-    description: string;
-    category: TBookCategory;
-    price: number;
-    stock: number;
-    image?: string;
-    publishedDate: string;
-};
+  _id: string;
+  title: string;
+  availability: boolean;
+  author: string;
+  description: string;
+  category: string;
+  price: number;
+  stock: number;
+  image: string;
+  publishedDate: string; 
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+};  
   

@@ -1,19 +1,8 @@
 
+import { TBook } from "@/types/bookTypes";
 import { Button } from "../ui/button";
 
-type BookCompProps = {
-    _id  : number , 
-    title : string ,
-    author : string ,
-    description : string ,
-    category : string ,
-    image : string ,
-    price : number ,
-    stock : number ,
-    publishedDate : string ,
-}
-
-const BookComp = ({item} : {item : BookCompProps}) => {
+const BookComp = ({item} : {item : TBook}) => {
     return (
         <div key={item._id} className="w-full border rounded flex flex-col p-3 gap-3 inter">
                             
