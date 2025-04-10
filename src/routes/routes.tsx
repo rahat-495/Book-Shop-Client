@@ -12,6 +12,7 @@ import ManageOrders from "@/pages/admin/ManageOrders";
 import ManageProducts from "@/pages/admin/ManageProducts";
 import ProfileSettings from "@/pages/Dashboard/ProfileSettings";
 import MyOrders from "@/pages/user/MyOrders";
+import CreateProduct from "@/pages/admin/CreateProduct";
 
 export const router = createBrowserRouter([
   {
@@ -23,7 +24,6 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
-
         path: "/about",
         element: <About />,
       },
@@ -31,38 +31,41 @@ export const router = createBrowserRouter([
         path: "/contact",
         element: <Contact />,
       },
-        {
+      {
         path: "/books",
         element: <Books />,
-
       },
     ],
   },
   {
     path: "/dashboard",
     element: <Dashboard />,
-    children : [
+    children: [
       {
-        path : "manage-users",
-        element : <ManageUsers />
+        path: "manage-users",
+        element: <ManageUsers />,
       },
       {
-        path : "manage-products",
-        element : <ManageProducts />
+        path: "create-product",
+        element: <CreateProduct />,
       },
       {
-        path : "manage-orders",
-        element : <ManageOrders />
+        path: "manage-products",
+        element: <ManageProducts />,
       },
       {
-        path : "profile",
-        element : <ProfileSettings />
+        path: "manage-orders",
+        element: <ManageOrders />,
       },
       {
-        path : "orders",
-        element : <MyOrders />
+        path: "profile",
+        element: <ProfileSettings />,
       },
-    ]
+      {
+        path: "orders",
+        element: <MyOrders />,
+      },
+    ],
   },
   {
     path: "/login",

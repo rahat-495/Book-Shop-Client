@@ -67,6 +67,9 @@ const Sidebar = () => {
             <Link to="/dashboard/manage-users" onClick={handleLinkClick} className="block py-2 hover:underline">
               Manage Users
             </Link>
+            <Link to="/dashboard/create-product" onClick={handleLinkClick} className="block py-2 hover:underline">
+              Create Product
+            </Link>
             <Link to="/dashboard/manage-products" onClick={handleLinkClick} className="block py-2 hover:underline">
               Manage Products
             </Link>
