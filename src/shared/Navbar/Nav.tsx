@@ -4,11 +4,14 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { logout } from "@/redux/features/auth/authSlice";
 import { Button } from "@/components/ui/button";
+import { CgProfile } from "react-icons/cg";
+import { useGetMyDataQuery } from "@/redux/features/user/userApi";
 
 const Nav = () => {
 
     const dispatch = useAppDispatch();
     const user = useAppSelector((state) => state.auth.user);
+    const {data} = useGetMyDataQuery(undefined) ;
 
     const navLists = [
         { name: "Home", path: "/" },
@@ -32,20 +35,30 @@ const Nav = () => {
                 {
                     navLists.map((navList, index) => (
                         <NavLink 
-                        key={index} 
-                        to={navList.path} 
+                        key={index}
+                        to={navList.path}
                         className={({ isActive, isPending }) => isPending ? "hover:underline" : isActive ? "hover:underline font-semibold" : "hover:underline"}>
                             {navList.name}
                         </NavLink>
                     ))
                 }
                 {user ? (
-                    <Button
-                        onClick={handleLogout}
-                        className="bg-primary text-white px-4 py-1 rounded-md transition duration-300"
-                    >
-                        Logout
-                    </Button>
+                    <details className="dropdown">
+
+                        <summary className="btn btn-circle rounded-full "> 
+                            <CgProfile className="text-2xl"/>
+                        </summary>
+
+                        <div className="menu gro dropdown-content bg-base-content right-1 rounded-box z-1 p-2 shadow-md backdrop-blur-2xl flex flex-col items-center justify-center  w-60 gap-2">
+                            <h1 className="font-semibold">{data?.data?.name}</h1>
+                            <p className="font-semibold">{data?.data?.email}</p>
+                            <Button
+                                onClick={handleLogout}
+                                className="bg-primary text-white w-full px-4 py-1 rounded-md transition duration-300"
+                            > Logout </Button>
+                        </div>
+
+                    </details>
                     ) : (
                     <>
                         <Link
