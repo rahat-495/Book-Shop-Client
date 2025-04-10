@@ -51,7 +51,7 @@ const ManageProducts = () => {
     }
 
     return (
-        <div className="w-full px-3 md:w-2/3 md:ml-auto xl:p-6 xl:w-10/12 xl:mx-auto mt-10">
+        <div className="w-full px-3 xl:p-6 xl:w-10/12 xl:mx-auto mt-10">
             <h2 className="text-4xl font-semibold mb-10 text-center">Manage Products</h2>
     
             <Table className="border rounded-2xl gro">

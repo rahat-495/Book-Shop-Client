@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FiLogOut, FiMenu } from "react-icons/fi";
@@ -6,6 +7,7 @@ import { logout } from "@/redux/features/auth/authSlice";
 import { cn } from "@/lib/utils"; 
 
 const Sidebar = () => {
+
   const [isOpen, setIsOpen] = useState(false);
   const user = useAppSelector((state) => state?.auth.user);
   const dispatch = useAppDispatch();
@@ -32,7 +34,7 @@ const Sidebar = () => {
       {isOpen && (
         <div
           onClick={() => setIsOpen(false)}
-          className="fixed inset-0 backdrop-blur-xl z-40 md:hidden"
+          className="fixed inset-0 backdrop-blur-lg z-40 xl:hidden"
         ></div>
       )}
 
