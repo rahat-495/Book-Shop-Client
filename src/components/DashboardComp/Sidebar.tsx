@@ -23,7 +23,7 @@ const Sidebar = () => {
 
   return (
     <>
-      <div className="flex fixed xl:hidden h-fit mt-6 p-2 justify-between items-center bg-base-200 shadow">
+      <div className="flex fixed xl:hidden h-fit mt-8 p-2 justify-between items-center bg-base-200 shadow">
         <button onClick={() => setIsOpen(true)} className="text-2xl">
           <FiMenu />
         </button>
@@ -41,7 +41,7 @@ const Sidebar = () => {
           "fixed top-0 left-0 -translate-x-full xl:translate-x-0 h-full w-60 bg-base-300 p-4 z-50 transform transition-transform duration-300",
           {
             "-translate-x-full": !isOpen && window.innerWidth < 768,
-            "translate-x-0": isOpen || window.innerWidth >= 768,
+            "translate-x-0": isOpen || window.innerWidth >= 769,
           }
         )}
       >
