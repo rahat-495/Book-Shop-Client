@@ -40,26 +40,33 @@ const Sidebar = () => {
 
         {
             user?.role === "admin" && (
-            <>
-            <Link
-                to="/dashboard/users"
-                className="block py-2 hover:underline"
-            >
-                Manage Users
-            </Link>
-            <Link
-                to="/dashboard/products"
-                className="block py-2 hover:underline"
-            >
-                Manage Products
-            </Link>
-            <Link
-                to="/dashboard/orders"
-                className="block py-2 hover:underline"
-            >
-                Manage Orders
-            </Link>
-            </>)
+                <>
+                <Link
+                    to="/dashboard/manage-users"
+                    className="block py-2 hover:underline"
+                >
+                    Manage Users
+                </Link>
+                <Link
+                    to="/dashboard/manage-products"
+                    className="block py-2 hover:underline"
+                >
+                    Manage Products
+                </Link>
+                <Link
+                    to="/dashboard/manage-orders"
+                    className="block py-2 hover:underline"
+                >
+                    Manage Orders
+                </Link>
+                <Link
+                    to="/dashboard/profile"
+                    className="block py-2 hover:underline"
+                >
+                    Profile Settings
+                </Link>
+                </>
+            )
         }
 
         {/* Logout */}

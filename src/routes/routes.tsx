@@ -7,6 +7,11 @@ import { Login } from "@/pages/Login";
 import { Register } from "@/pages/Register";
 import { createBrowserRouter } from "react-router-dom";
 import Dashboard from "@/pages/Dashboard/Dashboard";
+import ManageUsers from "@/pages/admin/ManageUsers";
+import ManageOrders from "@/pages/admin/ManageOrders";
+import ManageProducts from "@/pages/admin/ManageProducts";
+import ProfileSettings from "@/pages/Dashboard/ProfileSettings";
+import MyOrders from "@/pages/user/MyOrders";
 
 export const router = createBrowserRouter([
   {
@@ -36,6 +41,28 @@ export const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard />,
+    children : [
+      {
+        path : "manage-users",
+        element : <ManageUsers />
+      },
+      {
+        path : "manage-products",
+        element : <ManageProducts />
+      },
+      {
+        path : "manage-orders",
+        element : <ManageOrders />
+      },
+      {
+        path : "profile",
+        element : <ProfileSettings />
+      },
+      {
+        path : "orders",
+        element : <MyOrders />
+      },
+    ]
   },
   {
     path: "/login",
