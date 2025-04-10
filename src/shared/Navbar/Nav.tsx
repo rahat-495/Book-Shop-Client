@@ -1,8 +1,14 @@
 
 import { Link, NavLink } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { logout } from "@/redux/features/auth/authSlice";
+import { Button } from "@/components/ui/button";
 
 const Nav = () => {
+
+    const dispatch = useAppDispatch();
+    const user = useAppSelector((state) => state.auth.user);
 
     const navLists = [
         { name: "Home", path: "/" },
@@ -10,6 +16,10 @@ const Nav = () => {
         { name: "About", path: "/about" },
         { name: "Contact", path: "/contact" },
     ]
+
+    const handleLogout = () => {
+        dispatch(logout());
+    };
 
     return (
         <div className="flex z-40 w-full xl:w-[1440px] px-2 mx-auto justify-between items-center bg-transparent backdrop-blur-xl gro sticky top-0 py-3 text-black">
@@ -29,8 +39,29 @@ const Nav = () => {
                         </NavLink>
                     ))
                 }
-                <Link to="/login" className="bg-primary text-white px-4 py-1 rounded-md transition duration-300">Login</Link>
-                <Link to="/register" className="bg-primary text-white px-4 py-1 rounded-md transition duration-300">Register</Link>
+                {user ? (
+                    <Button
+                        onClick={handleLogout}
+                        className="bg-primary text-white px-4 py-1 rounded-md transition duration-300"
+                    >
+                        Logout
+                    </Button>
+                    ) : (
+                    <>
+                        <Link
+                        to="/login"
+                        className="bg-primary text-white px-4 py-1 rounded-md transition duration-300"
+                        >
+                        Login
+                        </Link>
+                        <Link
+                        to="/register"
+                        className="bg-primary text-white px-4 py-1 rounded-md transition duration-300"
+                        >
+                        Register
+                        </Link>
+                    </>
+                )}
             </div> 
 
             <div className="flex md:flex lg:hidden">
@@ -50,8 +81,19 @@ const Nav = () => {
                                 </NavLink>
                             ))
                         }
-                        <Link to="/login" className="bg-primary text-white px-4 py-1 w-full flex items-center justify-center font-semibold rounded-md transition duration-300">Login</Link>
-                        <Link to="/register" className="bg-primary text-white px-4 py-1 w-full flex items-center justify-center font-semibold rounded-md transition duration-300">Register</Link>
+                        {user ? (
+                            <Button
+                                onClick={handleLogout}
+                                className="bg-primary text-white px-4 py-1 rounded-md transition duration-300"
+                            >
+                                Logout
+                            </Button>
+                            ) : (
+                            <>
+                                <Link to="/login" className="bg-primary text-white px-4 py-1 w-full flex items-center justify-center font-semibold rounded-md transition duration-300">Login</Link>
+                                <Link to="/register" className="bg-primary text-white px-4 py-1 w-full flex items-center justify-center font-semibold rounded-md transition duration-300">Register</Link>
+                            </>
+                        )}
                         
                     </div>
                 </details>
