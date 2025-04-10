@@ -15,9 +15,9 @@ type BookCompProps = {
 
 const BookComp = ({item} : {item : BookCompProps}) => {
     return (
-        <div key={item._id} className="border rounded flex flex-col p-3 gap-3 inter">
+        <div key={item._id} className="w-full border rounded flex flex-col p-3 gap-3 inter">
                             
-            <img src={item?.image} alt="" className="w-full h-[300px]"/>
+            <img src={item?.image} alt="" className="w-full h-[250px] xl:h-[300px]"/>
 
             <div className="flex flex-col items-start justify-center mt-3 gap-3">
                 
