@@ -33,7 +33,7 @@ const ManageUsers = () => {
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
   const [currentStatus, setCurrentStatus] = useState<boolean>(false);
   console.log(data?.data.name);
-
+    
   const handleStatusChange = async (userId: string, currentStatus: boolean) => {
     try {
       const response = await updateUserStatus({
