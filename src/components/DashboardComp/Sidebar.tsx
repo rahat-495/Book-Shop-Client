@@ -38,7 +38,7 @@ const Sidebar = () => {
 
       <div
         className={cn(
-          "fixed top-0 left-0 h-full w-60 bg-base-300 p-4 z-50 transform transition-transform duration-300",
+          "fixed top-0 left-0 -translate-x-full xl:translate-x-0 h-full w-60 bg-base-300 p-4 z-50 transform transition-transform duration-300",
           {
             "-translate-x-full": !isOpen && window.innerWidth < 768,
             "translate-x-0": isOpen || window.innerWidth >= 768,
