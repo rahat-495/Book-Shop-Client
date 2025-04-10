@@ -1,4 +1,3 @@
-
 import Main from "./components/layout/Main";
 import Footer from "./shared/Footer/Footer";
 import Nav from "./shared/Navbar/Nav";
