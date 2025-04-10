@@ -1,6 +1,5 @@
 
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { GiHamburgerMenu } from "react-icons/gi";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { logout } from "@/redux/features/auth/authSlice";
 import { Button } from "@/components/ui/button";
