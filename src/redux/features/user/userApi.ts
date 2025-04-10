@@ -5,6 +5,12 @@ const userApi = baseApi.injectEndpoints({
     endpoints : (builder) => ({
         getMyData : builder.query({
             query : () => ({
+                url : "/users/get-my-data",
+                method : "GET",
+            })
+        }),
+        getAllUsers : builder.query({
+            query : () => ({
                 url : "/users",
                 method : "GET",
             })
@@ -12,4 +18,4 @@ const userApi = baseApi.injectEndpoints({
     })
 })
 
-export const { useGetMyDataQuery } = userApi ;
+export const { useGetMyDataQuery , useGetAllUsersQuery } = userApi ;
