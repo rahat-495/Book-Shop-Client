@@ -12,7 +12,7 @@ const Dashboard = () => {
 
                 <Sidebar />
 
-                <div className="pt-10 ml-60">
+                <div className="xl:pt-10 xl:ml-60 w-full">
                     <Outlet />
                 </div>
 

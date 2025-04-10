@@ -1,6 +1,5 @@
 
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { GiHamburgerMenu } from "react-icons/gi";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { logout } from "@/redux/features/auth/authSlice";
 import { Button } from "@/components/ui/button";
@@ -81,10 +80,10 @@ const Nav = () => {
 
             <div className="flex md:flex lg:hidden">
                 <details className="dropdown">
-                    <summary className="btn m-1"> 
-                        <GiHamburgerMenu />
+                    <summary className="btn btn-circle rounded-full "> 
+                        <CgProfile className="text-2xl"/>
                     </summary>
-                    <div className="menu dropdown-content bg-base-content right-1 rounded-box z-1 p-2 shadow-md backdrop-blur-2xl flex flex-col items-center justify-center sm:w-32 md:w-40 gap-2">
+                    <div className="menu dropdown-content bg-base-300 right-1 rounded-box z-1 p-2 shadow-md backdrop-blur-2xl flex flex-col items-center justify-center sm:w-32 md:w-40 gap-2">
                         
                         {
                             navLists.map((navList, index) => (
