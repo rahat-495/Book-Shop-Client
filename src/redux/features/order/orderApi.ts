@@ -3,13 +3,13 @@ import { baseApi } from "../../api/baseApi";
 
 const orderApi = baseApi.injectEndpoints({
     endpoints : (builder) => ({
-        getMyData : builder.query({
+        getMyOrders : builder.query({
             query : () => ({
-                url : "/users/get-my-data",
+                url : "/orders/my-orders",
                 method : "GET",
             })
         }),
     })
 })
 
-export const { useGetMyDataQuery } = orderApi ;
+export const { useGetMyOrdersQuery } = orderApi ;

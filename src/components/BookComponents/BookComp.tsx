@@ -1,6 +1,7 @@
 
 import { TBook } from "@/types/bookTypes";
 import { Button } from "../ui/button";
+import { Link } from "react-router-dom";
 
 const BookComp = ({item} : {item : TBook}) => {
     return (
@@ -30,7 +31,9 @@ const BookComp = ({item} : {item : TBook}) => {
 
             </div>
 
-            <Button className="cursor-pointer active:scale-90 duration-500">Buy Now</Button>
+            <Link to={`/add-to-cart/${item?._id}`} className="w-full">
+                <Button className="cursor-pointer w-full active:scale-90 duration-500">Add To Cart</Button>
+            </Link>
 
         </div>
     );

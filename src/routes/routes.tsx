@@ -14,6 +14,8 @@ import ProfileSettings from "@/pages/Dashboard/ProfileSettings";
 import MyOrders from "@/pages/user/MyOrders";
 import CreateProduct from "@/pages/admin/CreateProduct";
 import UpdateProducts from "@/pages/admin/UpdateProducts";
+import AddToCart from "@/pages/AddToCart/AddToCart";
+import Cart from "@/pages/Cart/Cart";
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +25,14 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/add-to-cart/:id",
+        element: <AddToCart />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
       {
         path: "/about",
