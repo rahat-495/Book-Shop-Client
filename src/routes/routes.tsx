@@ -13,7 +13,11 @@ import ManageProducts from "@/pages/admin/ManageProducts";
 import ProfileSettings from "@/pages/Dashboard/ProfileSettings";
 import MyOrders from "@/pages/user/MyOrders";
 import CreateProduct from "@/pages/admin/CreateProduct";
+
+import ProtectedRoute from "@/components/layout/ProtectedRoute";
+
 import UpdateProducts from "@/pages/admin/UpdateProducts";
+
 
 export const router = createBrowserRouter([
   {
@@ -40,7 +44,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard />,
+    element: (
+      <ProtectedRoute>
+        <Dashboard />
+      </ProtectedRoute>
+    ),
     children: [
       {
         path: "manage-users",
