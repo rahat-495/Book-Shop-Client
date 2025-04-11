@@ -3,14 +3,39 @@ import { useGetMyOrdersQuery } from "@/redux/features/order/orderApi";
 import { useAppSelector } from "@/redux/hooks"; // customize this if needed
 import { Link } from "react-router-dom";
 
+type TProduct = {
+    _id: string;
+    title: string;
+    category: string;
+    image: string;
+    price: number;
+    stock: number;
+    availability: boolean;
+    description: string;
+    author: string;
+    publishedDate: string;
+    createdAt: string;
+    updatedAt: string;
+}
+
+type TOrderItem = {
+    _id: string;
+    product: TProduct;
+    price: number;
+    status: string;
+    totalPrice: number;
+    quantity: number;
+}
+  
+
 const Cart = () => {
 
     const cartItems = useAppSelector((state) => state.cart.carts);
     const {data} = useGetMyOrdersQuery({}) ;
-    console.log(data?.data);
+    console.log(data?.data[0].quantity);
 
     const total = data?.data?.reduce(
-        (acc, item) => acc + item.price * item.quantity,
+        (acc : number, item : TOrderItem) => acc + item.price * item.quantity,
         0
     );
 
@@ -31,7 +56,7 @@ const Cart = () => {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           
             <div className="lg:col-span-2 space-y-4">
-                {data?.data?.map((item) => (
+                {data?.data?.map((item : TOrderItem) => (
                 <div
                     key={item._id}
                     className="w-full bg-white p-4 md:p-6 rounded-xl border shadow-sm flex flex-col md:flex-row gap-4"
@@ -46,12 +71,12 @@ const Cart = () => {
                         <h2 className="text-xl font-semibold">{item?.product?.title}</h2>
                         <p className="text-gray-600">{item?.product?.category}</p>
                         <p className="text-sm text-gray-500">
-                        Price: ${item.price} × {item?.product?.quantity}
+                        Price: ${item.product.price} × {item?.quantity}
                         </p>
                     </div>
 
                     <div className="mt-3 flex gap-2 items-center">
-                        <span className="text-sm">Qty: {item?.product?.quantity}</span>
+                        <span className="text-sm">Qty: {item?.quantity}</span>
                     </div>
                     </div>
                 </div>
