@@ -3,8 +3,9 @@ import { Link, useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useGetSingleBookQuery } from "@/redux/features/book/bookApi";
 import { useState } from "react";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { addToCart } from "@/redux/features/cart/cartSlice";
+import { useAddToCartMutation } from "@/redux/features/cart/cartApi";
 
 const AddToCart = () => {
 
@@ -12,6 +13,8 @@ const AddToCart = () => {
     const { data } = useGetSingleBookQuery(id);
     const dispatch = useAppDispatch() ;
     const [quantity, setQuantity] = useState<number>(1);
+    const [addToCartIntoDb] = useAddToCartMutation() ;
+    const user = useAppSelector(state => state.auth.user) ;
     
     const book = data?.data;
 
@@ -22,6 +25,9 @@ const AddToCart = () => {
 
     const handleAddToCart = async () => {
         dispatch(addToCart({product : id , quantity})) ;
+
+        const res = await addToCartIntoDb({product : id , quantity , email : user?.email}).unwrap() ;
+        console.log(res);
     }
 
     return (
