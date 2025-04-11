@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FiLogOut, FiMenu } from "react-icons/fi";
@@ -6,6 +7,7 @@ import { logout } from "@/redux/features/auth/authSlice";
 import { cn } from "@/lib/utils"; 
 
 const Sidebar = () => {
+
   const [isOpen, setIsOpen] = useState(false);
   const user = useAppSelector((state) => state?.auth.user);
   const dispatch = useAppDispatch();
@@ -23,7 +25,7 @@ const Sidebar = () => {
 
   return (
     <>
-      <div className="flex fixed xl:hidden h-fit mt-6 p-2 justify-between items-center bg-base-200 shadow">
+      <div className="flex fixed xl:hidden h-fit mt-8 p-2 justify-between items-center bg-base-200 shadow">
         <button onClick={() => setIsOpen(true)} className="text-2xl">
           <FiMenu />
         </button>
@@ -32,7 +34,7 @@ const Sidebar = () => {
       {isOpen && (
         <div
           onClick={() => setIsOpen(false)}
-          className="fixed inset-0 backdrop-blur-xl z-40 md:hidden"
+          className="fixed inset-0 backdrop-blur-lg z-40 xl:hidden"
         ></div>
       )}
 
@@ -41,7 +43,7 @@ const Sidebar = () => {
           "fixed top-0 left-0 -translate-x-full xl:translate-x-0 h-full w-60 bg-base-300 p-4 z-50 transform transition-transform duration-300",
           {
             "-translate-x-full": !isOpen && window.innerWidth < 768,
-            "translate-x-0": isOpen || window.innerWidth >= 768,
+            "translate-x-0": isOpen || window.innerWidth >= 769,
           }
         )}
       >
