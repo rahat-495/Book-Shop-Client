@@ -16,6 +16,7 @@ import CreateProduct from "@/pages/admin/CreateProduct";
 import UpdateProducts from "@/pages/admin/UpdateProducts";
 import AddToCart from "@/pages/AddToCart/AddToCart";
 import Cart from "@/pages/Cart/Cart";
+import UpdatePassword from "@/pages/UpdatePassword/UpdatePassword";
 
 export const router = createBrowserRouter([
   {
@@ -85,6 +86,10 @@ export const router = createBrowserRouter([
         element: <MyOrders />,
       },
     ],
+  },
+  {
+    path: "/update-password",
+    element: <UpdatePassword />,
   },
   {
     path: "/login",
