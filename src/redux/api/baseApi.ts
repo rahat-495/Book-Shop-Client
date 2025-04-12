@@ -1,3 +1,4 @@
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import {
@@ -13,6 +14,7 @@ import { toast } from "sonner";
 import { logout, setUser } from "../features/auth/authSlice";
 
 const baseQuery = fetchBaseQuery({
+  // baseUrl: "https://book-shop-server-mocha.vercel.app/api/v1",
   baseUrl: "http://localhost:5555/api/v1",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
@@ -39,7 +41,8 @@ const baseQueryWithRefreshToken: BaseQueryFn<
 
   if (result?.error?.status === 401) {
 
-    const res = await fetch("http://localhost:5000/api/v1/auth/refresh-token", {
+    // const res = await fetch("https://book-shop-server-mocha.vercel.app/api/v1/auth/refresh-token", {
+    const res = await fetch("http://localhost:5555/api/v1/auth/refresh-token", {
       method: "POST",
       credentials: "include",
     });
@@ -68,5 +71,5 @@ export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: baseQueryWithRefreshToken,
   endpoints: () => ({}),
-  tagTypes: ["Books"],
+  tagTypes: ["Books" , "carts" , "Users"],
 });

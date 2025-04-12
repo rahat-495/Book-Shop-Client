@@ -14,16 +14,10 @@ const orderApi = baseApi.injectEndpoints({
                 url : "/orders/create-order",
                 method : "POST",
                 body : payload ,
-            })
-        }),
-        getMyCarts : builder.mutation({
-            query : (payload) => ({
-                url : "/orders/my-carts",
-                method : "POST",
-                body : payload ,
-            })
+            }),
+            invalidatesTags: ["carts"], 
         }),
     })
 })
 
-export const { useGetMyOrdersQuery , useGetMyCartsMutation , useCreateOrderMutation } = orderApi ;
+export const { useGetMyOrdersQuery , useCreateOrderMutation } = orderApi ;

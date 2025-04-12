@@ -1,7 +1,7 @@
 
 import { baseApi } from "../../api/baseApi";
 
-const orderApi = baseApi.injectEndpoints({
+const cartApi = baseApi.injectEndpoints({
     endpoints : (builder) => ({
         addToCart : builder.mutation({
             query : (payload) => ({
@@ -10,14 +10,14 @@ const orderApi = baseApi.injectEndpoints({
                 body : payload ,
             })
         }),
-        getMyCarts : builder.mutation({
-            query : (payload) => ({
-                url : "/orders/my-carts",
-                method : "POST",
-                body : payload ,
-            })
+        getMyCarts : builder.query({
+            query : (param) => ({
+                url : `/orders/my-carts/email=${param}`,
+                method : "GET",
+            }),
+            providesTags : ["carts"]
         }),
     })
 })
 
-export const { useAddToCartMutation , useGetMyCartsMutation } = orderApi ;
+export const { useAddToCartMutation , useGetMyCartsQuery } = cartApi ;
