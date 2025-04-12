@@ -1,4 +1,3 @@
-
 import { baseApi } from "../../api/baseApi";
 
 const orderApi = baseApi.injectEndpoints({
@@ -17,7 +16,20 @@ const orderApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: ["carts"], 
         }),
+        getMyData: builder.query({
+            query: () => ({
+              url: "/users/get-my-data",
+              method: "GET",
+            }),
+        }),
+        getUserOrders: builder.query({
+            query: () => ({
+              url: "/orders/my-orders",
+              method: "GET",
+            }),
+            // providesTags: ["Orders"],
+          }),
     })
 })
 
-export const { useGetMyOrdersQuery , useCreateOrderMutation } = orderApi ;
+export const { useGetMyOrdersQuery , useCreateOrderMutation , useGetMyDataQuery , useGetUserOrdersQuery } = orderApi ;
