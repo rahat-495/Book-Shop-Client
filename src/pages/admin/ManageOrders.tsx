@@ -1,7 +1,8 @@
 
-import { useGetAllOrdersQuery, useDeleteOrderMutation } from "@/redux/features/order/orderApi";
+import { useGetAllOrdersQuery, useDeleteOrderMutation, useUpdateOrderMutation } from "@/redux/features/order/orderApi";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import Swal from "sweetalert2";
 
 export type TOrder = {
     _id: string;
@@ -21,8 +22,10 @@ export type TOrder = {
   
 
 const ManageOrders = () => {
+    
     const { data, isLoading } = useGetAllOrdersQuery(undefined);
     const [deleteOrder] = useDeleteOrderMutation();
+    const [updateOrder] = useUpdateOrderMutation();
 
     const handleDelete = async (id: string) => {
         const res = await deleteOrder(id).unwrap();
@@ -34,6 +37,42 @@ const ManageOrders = () => {
             toast.error("Failed to delete order." );
         }
     };
+    
+    const handleUpdate = async (id : string) => {
+        let status = "" ;
+        Swal.fire({
+            title: "Do you want to update the status?",
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: "Shipped",
+            denyButtonText: `Completed`
+          }).then(async (result) => {
+            if (result.isConfirmed) {
+
+                status = "Shipped" ;
+                const res = await updateOrder({id , status}).unwrap();
+                if(res?.success){
+                    Swal.fire("Order updated successfully!", "", "success");
+                }
+                else{
+                    Swal.fire("Failed to updated order.", "", "success");
+                }
+                
+            } else if (result.isDenied) {
+                
+                status = "Completed" ;
+                const res = await updateOrder({id , status}).unwrap();
+                if(res?.success){
+                    Swal.fire("Order updated successfully!", "", "success");
+                }
+                else{
+                    Swal.fire("Failed to updated order.", "", "success");
+                }
+
+            }
+        });
+        
+    }
 
     if (isLoading) return <p className="text-center py-6">Loading...</p>;
 
@@ -50,6 +89,7 @@ const ManageOrders = () => {
                 <th className="border p-2">Qty</th>
                 <th className="border p-2">Price</th>
                 <th className="border p-2">Status</th>
+                <th className="border p-2">Update Status</th>
                 <th className="border p-2">Txn ID</th>
                 <th className="border p-2">Txn Status</th>
                 <th className="border p-2">Action</th>
@@ -63,13 +103,21 @@ const ManageOrders = () => {
                     <td className="border p-2">{order.quantity}</td>
                     <td className="border p-2">${order.totalPrice.toFixed(2)}</td>
                     <td className="border p-2">{order.status}</td>
+                    <td className="border p-2">
+                        <Button
+                            onClick={() => handleUpdate(order._id)}
+                            className="text-sm cursor-pointer"
+                        >
+                            Update
+                        </Button>
+                    </td>
                     <td className="border p-2">{order.transaction?.id}</td>
                     <td className="border p-2">{order.transaction?.transactionStatus}</td>
                     <td className="border p-2">
                     <Button
                         onClick={() => handleDelete(order._id)}
                         variant="destructive"
-                        className="text-sm"
+                        className="text-sm cursor-pointer"
                     >
                         Delete
                     </Button>
