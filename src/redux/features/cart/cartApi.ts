@@ -8,7 +8,8 @@ const cartApi = baseApi.injectEndpoints({
                 url : "/orders/add-to-cart",
                 method : "POST",
                 body : payload ,
-            })
+            }),
+            invalidatesTags : ["carts"]
         }),
         getMyCarts : builder.query({
             query : (param) => ({

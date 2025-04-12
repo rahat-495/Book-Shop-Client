@@ -21,13 +21,13 @@ const BookFilteringComp = ({ setQuery } : any) => {
                 type="text"
                 placeholder="Search by Title"
                 className="w-full"
-                name="title"
+                name="searchTerm"
                 />
 
             <Input
                 {...register("author")}
                 type="text"
-                placeholder="Search by Author"
+                placeholder="Search by Author Email"
                 className="w-full"
                 name="author"
             />

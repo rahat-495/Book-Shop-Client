@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { CgProfile } from "react-icons/cg";
 import { useGetMyDataQuery } from "@/redux/features/user/userApi";
 import { FaShoppingCart } from "react-icons/fa";
+import logo from '../../assets/bookslogo.webp'
 
 const Nav = () => {
 
@@ -30,6 +31,7 @@ const Nav = () => {
         <div className={`flex z-40 w-full ${location.pathname?.includes('/dashboard') ? 'w-full px-3 xl:px-16' : 'xl:w-[1440px] px-2'} mx-auto justify-between items-center bg-transparent backdrop-blur-xl gro sticky top-0 py-3 text-black`}>
             
             <div className="flex items-center justify-between gap-3">
+                <img src={logo} className="w-14 h-14 rounded-full" alt="" />
                 <h1 className="text-xl font-semibold">Book Shop</h1>
             </div>  
 
@@ -82,7 +84,10 @@ const Nav = () => {
                 )}
             </div> 
 
-            <div className="flex md:flex lg:hidden">
+            <div className="flex md:flex lg:hidden gap-2">
+                    <Link to={`/cart`} className="btn btn-circle rounded-full">
+                        <FaShoppingCart />
+                    </Link>
                 <details className="dropdown">
                     <summary className="btn btn-circle rounded-full "> 
                         <CgProfile className="text-2xl"/>
@@ -99,6 +104,7 @@ const Nav = () => {
                                 </NavLink>
                             ))
                         }
+                        
                         {user ? (
                             <Button
                                 onClick={handleLogout}

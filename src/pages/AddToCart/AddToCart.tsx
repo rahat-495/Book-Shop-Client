@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { addToCart } from "@/redux/features/cart/cartSlice";
 import { useAddToCartMutation } from "@/redux/features/cart/cartApi";
+import Swal from "sweetalert2";
 
 const AddToCart = () => {
 
@@ -27,7 +28,13 @@ const AddToCart = () => {
         dispatch(addToCart({product : id , quantity})) ;
 
         const res = await addToCartIntoDb({product : id , quantity , email : user?.email}).unwrap() ;
-        console.log(res);
+        if(res?.success){
+            Swal.fire({
+                title: "Item Added!",
+                text: "Item added to cart !",
+                icon: "success"
+            });
+        }
     }
 
     return (
