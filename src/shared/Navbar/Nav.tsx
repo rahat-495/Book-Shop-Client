@@ -54,12 +54,12 @@ const Nav = () => {
                             <CgProfile className="text-2xl"/>
                         </summary>
 
-                        <div className="menu gro dropdown-content bg-base-content right-1 rounded-box z-1 p-2 shadow-md backdrop-blur-2xl flex flex-col items-center justify-center  w-60 gap-2">
+                        <div className="menu gro dropdown-content border bg-white right-1 rounded-box z-1 p-2 shadow-md backdrop-blur-2xl flex flex-col items-center justify-center  w-60 gap-2">
                             <h1 className="font-semibold">{data?.data?.name}</h1>
                             <p className="font-semibold">{data?.data?.email}</p>
                             <Button
                                 onClick={handleLogout}
-                                className="bg-primary text-white w-full px-4 py-1 rounded-md transition duration-300"
+                                className="bg-primary cursor-pointer text-white w-full px-4 py-1 rounded-md transition duration-300"
                             > Logout </Button>
                         </div>
 

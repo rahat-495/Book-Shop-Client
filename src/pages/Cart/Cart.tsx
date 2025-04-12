@@ -34,8 +34,6 @@ const Cart = () => {
     const res = useGetMyCartsQuery(user?.email) ;
     const [createOrder] = useCreateOrderMutation() ;
 
-    console.log(res);
-
     const handleOrderPlace = async (data : {id : string , quantity : number , cardId : string}) => {
         const res = await createOrder(data).unwrap() ;
         if(res?.success){

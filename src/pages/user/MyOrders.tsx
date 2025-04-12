@@ -1,3 +1,4 @@
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Table,
@@ -12,7 +13,6 @@ import { useGetUserOrdersQuery } from "@/redux/features/order/orderApi";
 
 const MyOrders = () => {
   const { data, isLoading, isError } = useGetUserOrdersQuery(undefined);
-  console.log(data);
 
   if (isLoading) {
     return (
@@ -51,10 +51,10 @@ const MyOrders = () => {
             {data.data.map((order: any) => (
               <TableRow key={order._id}>
                 <TableCell>{order._id}</TableCell>
-                <TableCell>{order.product?.title || "N/A"}</TableCell>
+                <TableCell>{order?.id?.title || "N/A"}</TableCell>
                 <TableCell>{order.quantity}</TableCell>
                 <TableCell>${order.totalPrice}</TableCell>
-                <TableCell>{order.status}</TableCell>
+                <TableCell className={`${order?.status === "Pending" ? "text-yellow-400" : "text-green-600"} font-semibold gro`}>{order.status}</TableCell>
                 {/* <TableCell>
                   <div className="flex justify-center gap-2">
                     <Button
