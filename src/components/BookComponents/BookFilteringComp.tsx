@@ -1,22 +1,23 @@
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Controller, FieldValues, useForm } from "react-hook-form";
 
-const BookFilteringComp = () => {
+const BookFilteringComp = ({ setQuery } : any) => {
 
     const {register , handleSubmit , control} = useForm() ;
 
     const onSubmit = (data : FieldValues) => {
-        console.log(data);
+        setQuery(data) ;
     }
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="w-full grid-cols-1 gap-3 grid xl:grid-cols-6 xl:gap-4">
 
             <Input
-                {...register("title")}
+                {...register("searchTerm")}
                 type="text"
                 placeholder="Search by Title"
                 className="w-full"
@@ -87,9 +88,9 @@ const BookFilteringComp = () => {
                     </SelectTrigger>
                     <SelectContent>
                         <SelectGroup>
-                        <SelectItem value="all">All</SelectItem>
-                        <SelectItem value="true">Available</SelectItem>
-                        <SelectItem value="false">Unavailable</SelectItem>
+                        <SelectItem value="All">All</SelectItem>
+                        <SelectItem value="Available">Available</SelectItem>
+                        <SelectItem value="Unavailable">Unavailable</SelectItem>
                         </SelectGroup>
                     </SelectContent>
                     </Select>
@@ -98,7 +99,7 @@ const BookFilteringComp = () => {
 
             <div className="grid grid-cols-2 gap-3 w-full">
                 
-                <Button type="reset" className="cursor-pointer duration-300 text-lg font-semibold border bg-white text-black border-gray-300 active:scale-90 hover:text-white hover:border-black"> Reset</Button>
+                <Button type="reset" onClick={() => setQuery({searchTerm: '', author: '', minPrice: '', maxPrice: '', category: "" , availability : ""})} className="cursor-pointer duration-300 text-lg font-semibold border bg-white text-black border-gray-300 active:scale-90 hover:text-white hover:border-black"> Reset</Button>
 
                 <Button type="submit" className="cursor-pointer duration-300 text-lg font-semibold border bg-white text-black border-gray-300 active:scale-90 hover:text-white hover:border-black">Search</Button>
 
