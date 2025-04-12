@@ -5,6 +5,7 @@ import { logout } from "@/redux/features/auth/authSlice";
 import { Button } from "@/components/ui/button";
 import { CgProfile } from "react-icons/cg";
 import { useGetMyDataQuery } from "@/redux/features/user/userApi";
+import { FaShoppingCart } from "react-icons/fa";
 
 const Nav = () => {
 
@@ -43,10 +44,13 @@ const Nav = () => {
                         </NavLink>
                     ))
                 }
+                <Link to={`/cart`} className="btn btn-circle rounded-full">
+                    <FaShoppingCart />
+                </Link>
                 {user ? (
                     <details className="dropdown">
 
-                        <summary className="btn btn-circle rounded-full "> 
+                        <summary className="btn btn-circle rounded-full"> 
                             <CgProfile className="text-2xl"/>
                         </summary>
 

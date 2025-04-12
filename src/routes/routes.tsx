@@ -17,6 +17,9 @@ import CreateProduct from "@/pages/admin/CreateProduct";
 import ProtectedRoute from "@/components/layout/ProtectedRoute";
 
 import UpdateProducts from "@/pages/admin/UpdateProducts";
+import AddToCart from "@/pages/AddToCart/AddToCart";
+import Cart from "@/pages/Cart/Cart";
+import UpdatePassword from "@/pages/UpdatePassword/UpdatePassword";
 
 
 export const router = createBrowserRouter([
@@ -27,6 +30,14 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/add-to-cart/:id",
+        element: <AddToCart />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
       {
         path: "/about",
@@ -71,6 +82,10 @@ export const router = createBrowserRouter([
         element: <ManageOrders />,
       },
       {
+        index : true ,
+        element: <ProfileSettings />,
+      },
+      {
         path: "profile",
         element: <ProfileSettings />,
       },
@@ -79,6 +94,10 @@ export const router = createBrowserRouter([
         element: <MyOrders />,
       },
     ],
+  },
+  {
+    path: "/update-password",
+    element: <UpdatePassword />,
   },
   {
     path: "/login",
