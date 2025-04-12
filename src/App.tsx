@@ -1,10 +1,13 @@
-import { Button } from "./components/ui/button";
+import Main from "./components/layout/Main";
+import Footer from "./shared/Footer/Footer";
+import Nav from "./shared/Navbar/Nav";
 
 function App() {
   return (
     <>
-      <h1>Hello starting</h1>
-      <Button>Click me</Button>
+      <Nav />
+      <Main />
+      <Footer />
     </>
   );
 }
