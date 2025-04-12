@@ -4,6 +4,7 @@ import { useGetMyCartsQuery } from "@/redux/features/cart/cartApi";
 import { useCreateOrderMutation } from "@/redux/features/order/orderApi";
 import { useAppSelector } from "@/redux/hooks"; 
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 type TBook = {
     _id: string;
@@ -37,7 +38,14 @@ const Cart = () => {
     const handleOrderPlace = async (data : {id : string , quantity : number , cardId : string}) => {
         const res = await createOrder(data).unwrap() ;
         if(res?.success){
-            window.open(res?.data?.checkout_url, "_blank");
+            Swal.fire({
+                title: "Order Placed !",
+                text: "Order placed successfully !",
+                icon: "success"
+            });
+            setTimeout(() => {
+                window.open(res?.data?.checkout_url, "_blank");
+            } , 300)
         }
     }
 
