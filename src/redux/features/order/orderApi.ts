@@ -27,7 +27,6 @@ const orderApi = baseApi.injectEndpoints({
               url: "/orders/my-orders",
               method: "GET",
             }),
-            // providesTags: ["Orders"],
           }),
     })
 })
