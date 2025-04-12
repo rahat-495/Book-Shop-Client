@@ -16,6 +16,13 @@ const orderApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: ["carts"], 
         }),
+        deleteOrder : builder.mutation({
+            query : (payload) => ({
+                url : `/orders/${payload}`,
+                method : "DELETE",
+            }),
+            invalidatesTags: ["order"], 
+        }),
         getMyData: builder.query({
             query: () => ({
               url: "/users/get-my-data",
@@ -27,8 +34,15 @@ const orderApi = baseApi.injectEndpoints({
               url: "/orders/my-orders",
               method: "GET",
             }),
-          }),
+        }),
+        getAllOrders: builder.query({
+            query: () => ({
+              url: "/orders",
+              method: "GET",
+            }),
+            providesTags : ["order"]
+        }),
     })
 })
 
-export const { useGetMyOrdersQuery , useCreateOrderMutation , useGetMyDataQuery , useGetUserOrdersQuery } = orderApi ;
+export const { useGetMyOrdersQuery , useCreateOrderMutation , useGetMyDataQuery , useGetUserOrdersQuery , useGetAllOrdersQuery , useDeleteOrderMutation } = orderApi ;
