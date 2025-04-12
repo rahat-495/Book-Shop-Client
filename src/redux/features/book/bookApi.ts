@@ -4,9 +4,10 @@ import { baseApi } from "@/redux/api/baseApi";
 const bookApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
         getAllBooks: builder.query({
-            query: () => ({
-            url: "/books",
-            method: "GET",
+            query: (params) => ({
+                url: "/books",
+                method: "GET",
+                params ,
             }),
             providesTags: ["Books"], 
         }),
